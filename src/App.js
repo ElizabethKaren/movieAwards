@@ -39,7 +39,7 @@ export class App extends Component{
           'name': this.state.userName,
           'password': this.state.password1
         })
-      }).then(data => data.json()).then(person => console.log(person))
+      }).then(data => data.json()).then(user => this.setState({ user }))
     } else {
       alert('Password Must Be The Same')
     }
