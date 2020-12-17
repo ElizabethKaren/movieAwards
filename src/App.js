@@ -2,12 +2,16 @@ import './App.css';
 import { Route, Switch } from 'react-router-dom';
 import { Component } from 'react'
 import MovieList from './Componants/MovieList'
+import SearchForMovie from './Componants/SearchForMovie'
+import MoviePage from './Componants/MoviePage'
 
 export class App extends Component{
 
   state = {
     movieList: '',
-    input: ''
+    input: '',
+    myTopFive: [],
+    movieClicked: null
   }
 
   getMovie = (key, movie) => {
@@ -20,16 +24,17 @@ export class App extends Component{
     this.getMovie('429f9e0f', this.state.input)
   }
 
+  movieClicked = movie => this.setState({ movieClicked: movie })
+
   render(){
+    console.log(this.state.movieClicked)
     return (
       <div className="App">
-        <h2>Top Five Movies</h2>
-        <form>
-          <input onChange={this.handleOnchage} name='input' placeholder='Search Movie...' value={this.state.input}></input>
-        </form>
-        <br></br>
-        <button onClick={this.handleSearch}>Search For Movie</button>
-        <MovieList list={this.state.movieList}/>
+        <Switch>
+        <Route path={`/${this.state.movieClicked}`} render={()=> <MoviePage movie={this.state.movieClicked}/> }></Route>
+        <Route path='/' render={()=> <SearchForMovie handleOnchage={this.handleOnchage} handleSearch={this.handleSearch} input={this.state.input} /> } /> 
+        </Switch>
+        <MovieList movieClicked={this.movieClicked} list={this.state.movieList}/>
       </div>
     )
   }
