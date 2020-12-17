@@ -2,11 +2,13 @@
 {
     "name": "Liz",
     "password": "myPassword",
-    "movieList": []
+    "movieList": [],
+    "id": 1
 },
 {
     "name": "Ramon",
     "password": "myPassword",
-    "movieList": []
+    "movieList": [],
+    "id": 2
 }
 ]
