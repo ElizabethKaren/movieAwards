@@ -1,31 +1,36 @@
 import './App.css';
+import { Route, Switch } from 'react-router-dom';
 import { Component } from 'react'
+import MovieList from './Componants/MovieList'
 
 export class App extends Component{
 
   state = {
-    move: '',
+    movieList: '',
     input: ''
   }
 
-  getMovies = (key, movie) => {
-    fetch(`http://www.omdbapi.com/?apikey=${key}&s=${movie}`).then(res => res.json()).then(movies => this.setState({ movies }))
+  getMovie = (key, movie) => {
+    fetch(`http://www.omdbapi.com/?apikey=${key}&s=${movie}`).then(res => res.json()).then(movieList => this.setState({ movieList, input: '' }))
   }
 
-  handleOnchage = e => this.setState({ [e.taget.name]: e.target.value })
+  handleOnchage = e => this.setState({ [e.target.name]: e.target.value })
 
-
-  handleSearch = e => console.log(this.state.input)
+  handleSearch = () => {
+    this.getMovie('429f9e0f', this.state.input)
+  }
 
   render(){
-    console.log(this.state.movies)
+    console.log(this.sate)
     return (
       <div className="App">
         <h2>Top Five Movies</h2>
         <form>
-          <input onChange={this.handleOnchage} name='input' placeholder='Search Movie...'>{this.state.input}</input>
+          <input onChange={this.handleOnchage} name='input' placeholder='Search Movie...' value={this.state.input}></input>
         </form>
+        <br></br>
         <button onClick={this.handleSearch}>Search For Movie</button>
+        <MovieList list={this.state.movieList}/>
       </div>
     )
   }
