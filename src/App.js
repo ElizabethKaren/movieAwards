@@ -4,6 +4,7 @@ import { Component } from 'react'
 import MovieList from './Componants/MovieList'
 import SearchForMovie from './Componants/SearchForMovie'
 import MoviePage from './Componants/MoviePage'
+import Users from './data.json'
 
 export class App extends Component{
 
@@ -11,7 +12,12 @@ export class App extends Component{
     movieList: '',
     input: '',
     myTopFive: [],
-    movieClicked: null
+    movieClicked: null,
+    users: []
+  }
+
+  componentDidMount(){
+    this.setState({ users: Users })
   }
 
   getMovie = (key, movie) => {
@@ -27,7 +33,7 @@ export class App extends Component{
   movieClicked = movie => this.setState({ movieClicked: movie })
 
   render(){
-    console.log(this.state.movieClicked)
+    console.log(this.state.users)
     return (
       <div className="App">
         <Switch>
