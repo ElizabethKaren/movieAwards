@@ -1,7 +1,6 @@
 import './App.css';
 import { Route, Switch } from 'react-router-dom';
 import { Component } from 'react'
-import MovieList from './Componants/MovieList'
 import SearchForMovie from './Componants/SearchForMovie'
 import MoviePage from './Componants/MoviePage'
 import Users from './data.json'
@@ -34,9 +33,8 @@ export class App extends Component{
       <div className="App">
         <Switch>
         <Route path='/movie/:title' render={(greg)=> <MoviePage greg={greg} movie={this.state.movieClicked}/> }></Route>
-        <Route path='/' render={()=> <SearchForMovie handleOnchage={this.handleOnchage} handleSearch={this.handleSearch} input={this.state.input} /> } /> 
+        <Route path='/' render={()=> <SearchForMovie movieClicked={this.movieClicked} list={this.state.movieList} handleOnchage={this.handleOnchage} handleSearch={this.handleSearch} input={this.state.input} /> } /> 
         </Switch>
-        <MovieList movieClicked={this.movieClicked} list={this.state.movieList}/>
       </div>
     )
   }
