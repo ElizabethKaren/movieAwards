@@ -2,10 +2,11 @@ import React from 'react'
 import TitleOfMovie from './TitleOfMovie'
 
 const MovieList = props => {
-    if (props.list === '') return <div></div>
-    if (props.list.length === 1) return <TitleOfMovie title={props.list.title} /> 
+    console.log(props)
+    if (props.list === '' || props.list === null) return <div></div>
+    if (props.list.length === 1) return <TitleOfMovie title={props.list.Title} /> 
     const list = props.list.Search
-    if (props) return (
+    return (
         <div>
             {list.map(movie => <TitleOfMovie {...movie} key={movie.imdbID}/> )}
         </div>

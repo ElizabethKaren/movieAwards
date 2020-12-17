@@ -21,7 +21,6 @@ export class App extends Component{
   }
 
   render(){
-    console.log(this.sate)
     return (
       <div className="App">
         <h2>Top Five Movies</h2>
