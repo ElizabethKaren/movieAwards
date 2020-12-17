@@ -32,7 +32,7 @@ export class App extends Component{
     return (
       <div className="App">
         <Switch>
-        <Route path='/movie/:title' render={(greg)=> <MoviePage greg={greg} movie={this.state.movieClicked}/> }></Route>
+        <Route path='/movie/:title' render={(greg)=> <MoviePage movieClicked={this.state.movieClicked} greg={greg} getMovie={this.getMovie}/> }></Route>
         <Route path='/' render={()=> <SearchForMovie movieClicked={this.movieClicked} list={this.state.movieList} handleOnchage={this.handleOnchage} handleSearch={this.handleSearch} input={this.state.input} /> } /> 
         </Switch>
       </div>
