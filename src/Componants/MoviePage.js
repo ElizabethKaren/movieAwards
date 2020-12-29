@@ -13,6 +13,7 @@ const MoviePage = props => {
             {movieInfo.Poster != 'N/A' ? <img src={movieInfo.Poster} alt={movieTitle}/> : null }
             <p>Type: {movieInfo.Type}</p>
             <p>Year: {movieInfo.Year}</p>
+            <button onClick={() => props.addToFavs(movieInfo)}>Add to Favs</button>
         </div>
     )
 }

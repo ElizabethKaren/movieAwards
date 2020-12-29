@@ -10,5 +10,11 @@
     "password": "myPassword",
     "movieList": [],
     "id": 2
+},
+{
+    "name": "Kenji",
+    "password": "ILoveLiz",
+    "movieList": [],
+    "id": 3
 }
 ]
