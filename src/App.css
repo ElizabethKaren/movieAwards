@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  font-family: 'Barrio', cursive;
+  font-family: Arial, Helvetica, sans-serif;
 }
 #x{
   display: flex;

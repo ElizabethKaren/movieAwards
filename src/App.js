@@ -30,7 +30,7 @@ export class App extends Component{
     this.setState({ users: data, myTopFive: myTopFive })
   }
 
-  getMovie = (key, movie) => fetch(`http://www.omdbapi.com/?apikey=${key}&s=${movie}`).then(res => res.json()).then(movieList => this.setState({ movieList, input: '' }))
+  getMovie = (key, movie) => fetch(`http://www.omdbapi.com/?apikey=${key}&s=${movie}`).then(res => res.json()).then(movieList => this.setState({ movieList }))
 
   handleOnchage = e => this.getMovie('429f9e0f', e.target.value)
 
