@@ -10,7 +10,7 @@ const SearchForMovie = props => {
                 <input onChange={props.handleOnchage} name='input' placeholder='Search Movie...' value={props.input}></input>
             </form>
             <br></br>
-            <button onClick={props.handleSearch}>Search For Movie</button>
+            {/* <button onClick={props.handleSearch}>Search For Movie</button> */}
             <MovieList movieClicked={props.movieClicked} list={props.list}/>
         </div>
     )
