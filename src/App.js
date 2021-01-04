@@ -32,7 +32,10 @@ export class App extends Component{
 
   getMovie = (key, movie) => fetch(`http://www.omdbapi.com/?apikey=${key}&s=${movie}`).then(res => res.json()).then(movieList => this.setState({ movieList }))
 
-  handleOnchage = e => this.getMovie('429f9e0f', e.target.value)
+  handleOnchage = e => {
+    this.setState({ [e.target.name]: e.target.value })
+    this.getMovie('429f9e0f', e.target.value)
+  }
 
   handleSearch = () => this.getMovie('429f9e0f', this.state.input)
 
