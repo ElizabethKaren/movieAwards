@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import { Component } from 'react'
 import SearchForMovie from './Componants/SearchForMovie'
 import MoviePage from './Componants/MoviePage'
-import data from './Data/data.json'
+import Nav from './Componants/Nav'
 
 ///remember change search function to work on onChange
 
@@ -27,7 +27,7 @@ export class App extends Component{
       myTopFive =  localStorage.myTopFive
       console.log(myTopFive)
     }
-    this.setState({ users: data, myTopFive: myTopFive })
+    this.setState({ myTopFive })
   }
 
   getMovie = (key, movie) => fetch(`http://www.omdbapi.com/?apikey=${key}&s=${movie}`).then(res => res.json()).then(movieList => this.setState({ movieList }))
@@ -42,9 +42,19 @@ export class App extends Component{
   movieClicked = movie => this.setState({ movieClicked: movie })
 
   addToFavs = info => {
-    this.setState({ myTopFive: [...this.state.myTopFive, info] }, () => {
-      localStorage.setItem( 'myTopFive', JSON.stringify(this.state.myTopFive))
-    })
+    if (this.state.myTopFive.length === 1){
+      this.setState({ myTopFive: [this.state.myTopFive, info] }, () => {
+        localStorage.setItem( 'myTopFive', JSON.stringify(this.state.myTopFive))
+      })
+    } else if (this.state.myTopFive.length === 0) {
+      this.setState({ myTopFive: [info] }, () => {
+        localStorage.setItem( 'myTopFive', JSON.stringify(this.state.myTopFive))
+      })
+    } else {
+      this.setState({ myTopFive: [...this.state.myTopFive, info] }, () => {
+        localStorage.setItem( 'myTopFive', JSON.stringify(this.state.myTopFive))
+      })
+    }
   }
 
 
@@ -53,6 +63,7 @@ export class App extends Component{
     console.log(this.state.movieClicked)
     return (
       <div className="App">
+        <Nav />
         <Switch>
         <Route path='/movie/:title' render={(greg)=> <MoviePage addToFavs={this.addToFavs} movieClicked={this.state.movieClicked} greg={greg} getMovie={this.getMovie}/> }></Route>
         <Route path='/' render={()=> <SearchForMovie movieClicked={this.movieClicked} list={this.state.movieList} handleOnchage={this.handleOnchage} handleSearch={this.handleSearch} input={this.state.input} /> } /> 
