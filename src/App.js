@@ -24,7 +24,7 @@ export class App extends Component{
   componentDidMount(){
     let myTopFive = []
     if (localStorage.getItem(myTopFive)){
-      myTopFive =  localStorage.getItem(myTopFive)
+      myTopFive = localStorage.getItem(myTopFive)
     }
     this.setState({ myTopFive })
   }
@@ -43,13 +43,13 @@ export class App extends Component{
   addToFavs = info => {
     const newTopFive = [...this.state.myTopFive, info]
     this.setState({ myTopFive: newTopFive })
-    localStorage.setItem( 'myTopFive', JSON.stringify(newTopFive) )
+    localStorage.setItem( 'myTopFive', newTopFive )
+    console.log(localStorage)
   }
 
 
   render(){
     console.log(this.state.myTopFive)
-    if (localstorage.getItem(myTopFive)) return console.log(localStorage.getItem(myTopFive))
     return (
       <div className="App">
         <Nav />
