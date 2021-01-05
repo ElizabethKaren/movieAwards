@@ -23,9 +23,8 @@ export class App extends Component{
 
   componentDidMount(){
     let myTopFive = []
-    if (localStorage.myTopFive){
-      myTopFive =  localStorage.myTopFive
-      console.log(myTopFive)
+    if (localStorage.getItem(myTopFive)){
+      myTopFive =  localStorage.getItem(myTopFive)
     }
     this.setState({ myTopFive })
   }
@@ -42,25 +41,15 @@ export class App extends Component{
   movieClicked = movie => this.setState({ movieClicked: movie })
 
   addToFavs = info => {
-    if (this.state.myTopFive.length === 1){
-      this.setState({ myTopFive: [this.state.myTopFive, info] }, () => {
-        localStorage.setItem( 'myTopFive', JSON.stringify(this.state.myTopFive))
-      })
-    } else if (this.state.myTopFive.length === 0) {
-      this.setState({ myTopFive: [info] }, () => {
-        localStorage.setItem( 'myTopFive', JSON.stringify(this.state.myTopFive))
-      })
-    } else {
-      this.setState({ myTopFive: [...this.state.myTopFive, info] }, () => {
-        localStorage.setItem( 'myTopFive', JSON.stringify(this.state.myTopFive))
-      })
-    }
+    const newTopFive = [...this.state.myTopFive, info]
+    this.setState({ myTopFive: newTopFive })
+    localStorage.setItem( 'myTopFive', JSON.stringify(newTopFive) )
   }
 
 
   render(){
     console.log(this.state.myTopFive)
-    console.log(this.state.movieClicked)
+    if (localstorage.getItem(myTopFive)) return console.log(localStorage.getItem(myTopFive))
     return (
       <div className="App">
         <Nav />
