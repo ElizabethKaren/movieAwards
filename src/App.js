@@ -10,21 +10,20 @@ import Nav from './Componants/Nav'
 export class App extends Component{
 
   state = {
-    user: null,
     movieList: '',
     input: '',
     myTopFive: null,
-    movieClicked: null,
-    users: [],
-    userName: '',
-    password1: '',
-    password2: ''
+    movieClicked: null
   }
 
   componentDidMount(){
     let myTopFive = ''
-    myTopFive = localStorage.getItem(myTopFive)
-    this.setState({ myTopFive })
+    if (localStorage.getItem('myTopFive')){
+      myTopFive = JSON.parse(localStorage.getItem('myTopFive'))
+      console.log(myTopFive)
+    }
+    console.log(myTopFive)
+    this.setState({ myTopFive: myTopFive })
   }
 
   getMovie = (key, movie) => fetch(`http://www.omdbapi.com/?apikey=${key}&s=${movie}`).then(res => res.json()).then(movieList => this.setState({ movieList }))
@@ -39,17 +38,19 @@ export class App extends Component{
   movieClicked = movie => this.setState({ movieClicked: movie })
 
   addToFavs = info => {
-    let mewTopFive = ''
-    if (this.state.myTopFive !== null ){
-      newTopFive = [...this.state.myTopFive, info]
+    if (this.state.myTopFive.includes(info)){
+      alert('Already in your top five.')
     } else {
-      mewTopFive = [info]
+      let newTopFive = ''
+        if (this.state.myTopFive !== null ){
+          newTopFive = [...this.state.myTopFive, info]
+        } else {
+          newTopFive = [info]
+        }
+        this.setState({ myTopFive: newTopFive })
+        localStorage.setItem( 'myTopFive', JSON.stringify(newTopFive) )
     }
-    this.setState({ myTopFive: mewTopFive })
-    localStorage.setItem( 'myTopFive', mewTopFive )
-    console.log(localStorage)
   }
-
 
   render(){
     console.log(this.state.myTopFive)
