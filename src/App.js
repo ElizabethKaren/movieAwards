@@ -23,9 +23,7 @@ export class App extends Component{
 
   componentDidMount(){
     let myTopFive = []
-    if (localStorage.getItem(myTopFive)){
-      myTopFive = localStorage.getItem(myTopFive)
-    }
+    myTopFive = localStorage.getItem(myTopFive)
     this.setState({ myTopFive })
   }
 
@@ -36,7 +34,7 @@ export class App extends Component{
     this.getMovie('429f9e0f', e.target.value)
   }
 
-  handleSearch = () => this.getMovie('429f9e0f', this.state.input)
+  // handleSearch = () => this.getMovie('429f9e0f', this.state.input)
 
   movieClicked = movie => this.setState({ movieClicked: movie })
 
