@@ -2,6 +2,8 @@ import React from 'react'
 import TitleOfMovie from './TitleOfMovie'
 
 const MovieList = props => {
+    if (props.myTopFive === null && props.list === null) return <div></div>
+    if (props.myTopFive) return <div>{props.myTopFive.map(movie => <TitleOfMovie movieClicked={props.movieClicked} {...movie} key={movie.imdbID}/> )}</div>
     const list = props.list.Search
     if (!list) return <div></div>
     if (props.list === '' || props.list === null) return <div></div>

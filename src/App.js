@@ -4,6 +4,7 @@ import { Component } from 'react'
 import SearchForMovie from './Componants/SearchForMovie'
 import MoviePage from './Componants/MoviePage'
 import Nav from './Componants/Nav'
+import MovieList from './Componants/MovieList'
 
 ///remember change search function to work on onChange
 
@@ -38,27 +39,33 @@ export class App extends Component{
   movieClicked = movie => this.setState({ movieClicked: movie })
 
   addToFavs = info => {
-    if (this.state.myTopFive.includes(info)){
-      alert('Already in your top five.')
+    if (this.state.myTopFive.length === 5){
+      alert('Only Five Movies Allowed in your top five.')
     } else {
-      let newTopFive = ''
-        if (this.state.myTopFive !== null ){
-          newTopFive = [...this.state.myTopFive, info]
-        } else {
-          newTopFive = [info]
-        }
-        this.setState({ myTopFive: newTopFive })
-        localStorage.setItem( 'myTopFive', JSON.stringify(newTopFive) )
+      if (this.state.myTopFive.includes(info)){
+        alert('Already in your top five.')
+      } else {
+        let newTopFive = ''
+          if (this.state.myTopFive !== null ){
+            newTopFive = [...this.state.myTopFive, info]
+          } else {
+            newTopFive = [info]
+          }
+          this.setState({ myTopFive: newTopFive })
+          localStorage.setItem( 'myTopFive', JSON.stringify(newTopFive) )
+      }
     }
   }
 
+  removeFromFavs = movie => console.log(movie)
+
   render(){
-    console.log(this.state.myTopFive)
     return (
       <div className="App">
-        <Nav />
+        <Nav topFive={this.state.myTopFive} />
         <Switch>
-        <Route path='/movie/:title' render={(greg)=> <MoviePage addToFavs={this.addToFavs} movieClicked={this.state.movieClicked} greg={greg} getMovie={this.getMovie}/> }></Route>
+        <Route path='/topfive' render={ () => <MovieList  movieClicked={this.movieClicked} myTopFive={this.state.myTopFive} /> }></Route>
+        <Route path='/movie/:title' render={(greg)=> <MoviePage removeFromFavs={this.removeFromFavs} myTopFive={this.state.myTopFive} addToFavs={this.addToFavs} movieClicked={this.state.movieClicked} greg={greg} getMovie={this.getMovie}/> }></Route>
         <Route path='/' render={()=> <SearchForMovie movieClicked={this.movieClicked} list={this.state.movieList} handleOnchage={this.handleOnchage} handleSearch={this.handleSearch} input={this.state.input} /> } /> 
         </Switch>
       </div>
