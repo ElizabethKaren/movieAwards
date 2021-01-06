@@ -13,7 +13,7 @@ export class App extends Component{
     user: null,
     movieList: '',
     input: '',
-    myTopFive: [],
+    myTopFive: null,
     movieClicked: null,
     users: [],
     userName: '',
@@ -22,7 +22,7 @@ export class App extends Component{
   }
 
   componentDidMount(){
-    let myTopFive = []
+    let myTopFive = ''
     myTopFive = localStorage.getItem(myTopFive)
     this.setState({ myTopFive })
   }
@@ -39,8 +39,13 @@ export class App extends Component{
   movieClicked = movie => this.setState({ movieClicked: movie })
 
   addToFavs = info => {
-    const newTopFive = [...this.state.myTopFive, info]
-    this.setState({ myTopFive: newTopFive })
+    let myTopFive = ''
+    if (this.state.myTopFive !== null ){
+      newTopFive = [...this.state.myTopFive, info]
+    } else {
+      myTopFive = [info]
+    }
+    this.setState({ myTopFive: myTopFive })
     localStorage.setItem( 'myTopFive', newTopFive )
     console.log(localStorage)
   }
