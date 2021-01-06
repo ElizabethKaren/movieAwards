@@ -5,7 +5,8 @@ const MoviePage = props => {
     const almostTitle = props.greg.match.params.title
     const movieTitle = almostTitle.slice(1,almostTitle.lenght)
     const movieInfo = props.movieClicked
-    console.log(props.movieClicked)
+    console.log(props.myTopFive)
+    console.log(movieInfo)
     if (!movieInfo) return <div><Link to='/'><h3 id='x'>X</h3></Link><h1>{movieTitle}</h1></div>
     return (
         <div>

@@ -6,8 +6,6 @@ import MoviePage from './Componants/MoviePage'
 import Nav from './Componants/Nav'
 import MovieList from './Componants/MovieList'
 
-///remember change search function to work on onChange
-
 export class App extends Component{
 
   state = {
@@ -21,9 +19,7 @@ export class App extends Component{
     let myTopFive = ''
     if (localStorage.getItem('myTopFive')){
       myTopFive = JSON.parse(localStorage.getItem('myTopFive'))
-      console.log(myTopFive)
     }
-    console.log(myTopFive)
     this.setState({ myTopFive: myTopFive })
   }
 
@@ -39,11 +35,10 @@ export class App extends Component{
   movieClicked = movie => this.setState({ movieClicked: movie })
 
   addToFavs = info => {
-    if (this.state.myTopFive.length === 5){
-      alert('Only Five Movies Allowed in your top five.')
-    } else {
       if (this.state.myTopFive.includes(info)){
         alert('Already in your top five.')
+      } else if (this.state.myTopFive.length === 5){
+        alert('Only Five Movies Allowed in your top five.')
       } else {
         let newTopFive = ''
           if (this.state.myTopFive !== null ){
@@ -54,7 +49,6 @@ export class App extends Component{
           this.setState({ myTopFive: newTopFive })
           localStorage.setItem( 'myTopFive', JSON.stringify(newTopFive) )
       }
-    }
   }
 
   removeFromFavs = movie => console.log(movie)
