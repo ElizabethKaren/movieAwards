@@ -39,14 +39,14 @@ export class App extends Component{
   movieClicked = movie => this.setState({ movieClicked: movie })
 
   addToFavs = info => {
-    let myTopFive = ''
+    let mewTopFive = ''
     if (this.state.myTopFive !== null ){
       newTopFive = [...this.state.myTopFive, info]
     } else {
-      myTopFive = [info]
+      mewTopFive = [info]
     }
-    this.setState({ myTopFive: myTopFive })
-    localStorage.setItem( 'myTopFive', newTopFive )
+    this.setState({ myTopFive: mewTopFive })
+    localStorage.setItem( 'myTopFive', mewTopFive )
     console.log(localStorage)
   }
 
