@@ -5,9 +5,9 @@ const MoviePage = props => {
     const almostTitle = props.greg.match.params.title
     const movieTitle = almostTitle.slice(1,almostTitle.lenght)
     const movieInfo = props.movieClicked
-    console.log(props.myTopFive)
-    console.log(movieInfo)
     if (!movieInfo) return <div><Link to='/'><h3 id='x'>X</h3></Link><h1>{movieTitle}</h1></div>
+    const topTitles = props.myTopFive.map(movies => movies.Title)
+    console.log(topTitles)
     return (
         <div>
             <Link to='/'><h3 id='x'>X</h3></Link>
@@ -15,7 +15,7 @@ const MoviePage = props => {
             {movieInfo.Poster !== 'N/A' ? <img src={movieInfo.Poster} alt={movieTitle}/> : null }
             <p>Type: {movieInfo.Type}</p>
             <p>Year: {movieInfo.Year}</p>
-            { props.myTopFive.includes(movieInfo) ? <button onClick={()=> props.removeFromFavs(movieInfo)}>Remove from Favs</button> : <button onClick={() => props.addToFavs(movieInfo)}>Add to Favs</button> }
+            { topTitles.includes(movieInfo.Title) ? <button onClick={()=> props.removeFromFavs(movieInfo)}>Remove from Favs</button> : <button onClick={() => props.addToFavs(movieInfo)}>Add to Favs</button> }
         </div>
     )
 }
