@@ -6,7 +6,8 @@ const MoviePage = props => {
     const movieTitle = almostTitle.slice(1,almostTitle.lenght)
     const movieInfo = props.movieClicked
     if (!movieInfo) return <div><Link to='/'><h3 id='x'>X</h3></Link><h1>{movieTitle}</h1></div>
-    const topTitles = props.myTopFive.map(movies => movies.Title)
+    const topTitlesFromStorage = JSON.parse(localStorage.getItem('myTopFive'))
+    const topTitles = topTitlesFromStorage.map(movies => movies.Title)
     console.log(topTitles)
     return (
         <div>

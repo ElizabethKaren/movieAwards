@@ -33,7 +33,7 @@ export class App extends Component{
   // handleSearch = () => this.getMovie('429f9e0f', this.state.input)
 
   movieClicked = movie => {
-    this.setState({ myTopFive: this.state.myTopFive.select(film => film !== movie )})
+    this.setState({ myTopFive: this.state.myTopFive.filter(film => film !== movie )})
   }
 
   addToFavs = info => {
