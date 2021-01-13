@@ -12,7 +12,12 @@
   align-items: left;
   margin-left: 80vw;
 }
-
+.movieList{
+  
+}
+.eachMovie{
+ 
+}
 button{
   background-color: azure;
   border-radius: 7px;

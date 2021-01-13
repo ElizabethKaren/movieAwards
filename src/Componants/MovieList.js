@@ -9,7 +9,7 @@ const MovieList = props => {
     if (props.list === '' || props.list === null) return <div></div>
     // if (props.list.length === 1) return <TitleOfMovie movieClicked={props.movieClicked} title={props.list.Title} /> 
     return (
-        <div>
+        <div className='movieList'>
             {list.map(movie => <TitleOfMovie movieClicked={props.movieClicked} {...movie} key={movie.imdbID}/> )}
         </div>
     )
