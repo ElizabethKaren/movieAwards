@@ -13,6 +13,7 @@
   margin-left: 80vw;
 }
 .movieList{
+  width: auto;
   display: grid;
   grid-column-gap: 50px;
 }
