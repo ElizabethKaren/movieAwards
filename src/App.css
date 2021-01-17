@@ -13,13 +13,27 @@
   margin-left: 80vw;
 }
 .movieList{
-  width: auto;
-  display: grid;
-  grid-column-gap: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  /* align-items: grid; */
+  padding-left: 20px;
+  padding-right: 20px;
+  /* width: 80%; */
 }
 .eachMovie{
-  grid-column-start: 1;
-  grid-column-end: 3;
+  /* width: 20px;
+  height: 30px;
+  padding: 8px; */
+  height: 400px;
+  width: 500px;
+  border: #232345;
+  border-width: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  position: relative;
+  /* float: left; */
+  margin-left: 10px;
+  padding: 20px;
 }
 button{
   background-color: azure;

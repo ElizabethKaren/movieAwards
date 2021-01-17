@@ -2,9 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const TitleOfMovie = props => {
-    if (!props) return <div></div>
     const year = parseInt(props.Year )
     if (props.Type !== 'movie' ) return <div></div>
+    if (props.Poster === 'N/A' ) return <div></div>
     return (
         <div className='eachMovie'>
             <Link to={`/movie/{${props.Title}`} onClick={() => props.movieClicked(props)}><p>{props.Title} - {year}</p></Link>
