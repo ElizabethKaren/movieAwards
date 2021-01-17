@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom'
 
 const Nav = props => {
     if (!props.topFive) return <div></div>
-    if (props.topFive.length === 5) return <div><br/><Link to='/topfive'><button>See My Top Five</button></Link></div>
+    if (props.topFive.length === 5) return <div className='nav'><br/><Link to='/topfive'>My Top Five</Link></div>
     return (
-        <div>
-            <h2>{5 - props.topFive.length} movies left to add ...</h2>
+        <div className='nav'>
+            <h2><Link to='/topfive'>{5 - props.topFive.length} movies left to add ...</Link></h2>
 
         </div>
     )

@@ -1,1 +1,2 @@
-<h1>Movie Awards Project</h1>
+<h1 className='App'>Welcome to your own personal Movie Awareds</h1>
+<img src='./Images/project.png' alt='movie theater' />

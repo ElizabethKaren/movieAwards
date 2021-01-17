@@ -1,6 +1,12 @@
 .App {
   text-align: center;
-  font-family: Arial, Helvetica, sans-serif;
+  /* font-family: Arial, Helvetica, sans-serif; */
+  font-family: 'Limelight', cursive;
+}
+.nav{
+  padding-top: 10px;
+  display: flex;
+  flex-direction: left;
 }
 #x{
   display: flex;
@@ -24,6 +30,11 @@
 }
 #title:hover{
   font-weight: bold;
+}
+#moviePoster:hover{
+  box-shadow: 10px solid darkgrey;
+  /* width: 160px;
+  height: 250px; */
 }
 .eachMovie{
   display: flex;

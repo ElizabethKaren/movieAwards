@@ -52,14 +52,12 @@ export class App extends Component{
   }
 
   removeFromFavs = movie => {
-    console.log(movie)
     const newArray = this.state.myTopFive.filter(film => film.Title !== movie.Title)
     this.setState({ myTopFive: newArray })
     localStorage.setItem( 'myTopFive', JSON.stringify(newArray) )
   }
 
   render(){
-    console.log(this.state.myTopFive)
     return (
       <div className="App">
         <Nav topFive={this.state.myTopFive} />
