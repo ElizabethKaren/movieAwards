@@ -7,8 +7,8 @@ const TitleOfMovie = props => {
     if (props.Poster === 'N/A' ) return <div></div>
     return (
         <div className='eachMovie'>
-            <Link to={`/movie/{${props.Title}`} onClick={() => props.movieClicked(props)}><p>{props.Title} - {year}</p></Link>
-            { props.Poster === 'N/A' ? null : <Link to={`/movie/{${props.Title}`} onClick={() => props.movieClicked(props)}><img src={props.Poster} alt={props.Title} /></Link> }
+            <Link to={`/movie/{${props.Title}`} onClick={() => props.movieClicked(props)}><img src={props.Poster} alt={props.Title} width='130' height='200' /></Link>
+            <Link to={`/movie/{${props.Title}`} onClick={() => props.movieClicked(props)}><p id='title'>{props.Title} - {year}</p></Link>
         </div>
     )
 }
