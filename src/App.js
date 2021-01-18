@@ -60,7 +60,6 @@ export class App extends Component{
   }
 
   render(){
-    console.log(key)
     return (
       <div className="App">
         <Nav topFive={this.state.myTopFive} />
