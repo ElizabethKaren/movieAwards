@@ -7,7 +7,7 @@ const MoviePage = props => {
     const movieInfo = props.movieClicked
     if (!movieInfo) return <div><Link to='/'><h3 id='x'>X</h3></Link><h1>{movieTitle}</h1></div>
     const topTitlesFromStorage = JSON.parse(localStorage.getItem('myTopFive'))
-    const topTitles = topTitlesFromStorage.map(movies => movies.Title)
+    const topTitles = topTitlesFromStorage ? topTitlesFromStorage.map(movies => movies.Title) : []
     const year = parseInt(movieInfo.Year)
     return (
         <div>
