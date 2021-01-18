@@ -22,7 +22,7 @@ export class App extends Component{
     if (localStorage.getItem('myTopFive')){
       myTopFive = JSON.parse(localStorage.getItem('myTopFive'))
     }
-    this.setState({ myTopFive: myTopFive })
+    this.setState({ myTopFive })
   }
 
   getMovie = (key, movie) => fetch(`http://www.omdbapi.com/?apikey=${key}&s=${movie}`).then(res => res.json()).then(movieList => this.setState({ movieList }))
