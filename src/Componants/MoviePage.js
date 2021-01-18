@@ -11,7 +11,7 @@ const MoviePage = props => {
     const year = parseInt(movieInfo.Year)
     return (
         <div>
-            <Link to='/'><h3 id='x'>X</h3></Link>
+            <Link to='/'><h3 id='x'>x</h3></Link>
             <h1>{movieTitle}</h1>
             {movieInfo.Poster !== 'N/A' ? <img src={movieInfo.Poster} alt={movieTitle}/> : null }
             <p>Year: {year}</p>

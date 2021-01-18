@@ -7,7 +7,7 @@ const MovieList = props => {
     if (props.myTopFive) return (
         <div className='movieList'>
             <br></br>
-            <Link to='/'><p>X</p></Link>
+            <Link to='/'><p id='x'>x</p></Link>
             <br></br>
             <br></br>
             {props.myTopFive.map(movie => <TitleOfMovie movieClicked={props.movieClicked} {...movie} key={movie.imdbID}/> )}
