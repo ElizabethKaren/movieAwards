@@ -38,7 +38,7 @@
 .eachMovie{
   display: flex;
   flex-direction: column;
-  color: black;
+  color: white;
   font-size: small;
   position: relative;
   padding: 40px;
