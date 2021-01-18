@@ -6,6 +6,7 @@ const MovieList = props => {
     if (props.myTopFive === null && props.list === null) return <div></div>
     if (props.myTopFive) return (
         <div className='movieList'>
+            <br></br>
             <Link to='/'><p>X</p></Link>
             <br></br>
             <br></br>
@@ -16,7 +17,6 @@ const MovieList = props => {
     const list = props.list.Search
     if (!list) return <div></div>
     if (props.list === '' || props.list === null) return <div></div>
-    // if (props.list.length === 1) return <TitleOfMovie movieClicked={props.movieClicked} title={props.list.Title} /> 
     return (
         <div className='movieList'>
             {list.map(movie => <TitleOfMovie movieClicked={props.movieClicked} {...movie} key={movie.imdbID}/> )}

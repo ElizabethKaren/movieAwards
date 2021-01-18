@@ -4,7 +4,7 @@ import MovieList from './MovieList'
 const SearchForMovie = props => {
     return (
         <div>
-            <h2>Search For your favorite Movies</h2>
+            <h2>Search your favorite Movies</h2>
             <br></br>
             <form>
                 <input onChange={props.handleOnchage} name='input' placeholder='Search Movie...' value={props.input}></input>

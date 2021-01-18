@@ -34,18 +34,14 @@
 #title:hover{
   font-weight: bold;
 }
-#moviePoster:hover{
-  box-shadow: 10px solid darkgrey;
-  /* width: 160px;
-  height: 250px; */
-}
+
 .eachMovie{
   display: flex;
   flex-direction: column;
   color: black;
   font-size: small;
   position: relative;
-  padding: 10px;
+  padding: 40px;
   align-items: center;
 }
 button{
