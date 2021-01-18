@@ -6,6 +6,8 @@ import MoviePage from './Componants/MoviePage'
 import Nav from './Componants/Nav'
 import MovieList from './Componants/MovieList'
 
+const key = process.env.REACT_APP_API_KEY
+
 export class App extends Component{
 
   state = {
@@ -27,7 +29,7 @@ export class App extends Component{
 
   handleOnchage = e => {
     this.setState({ [e.target.name]: e.target.value })
-    this.getMovie('429f9e0f', e.target.value)
+    this.getMovie(key, e.target.value)
   }
 
   // handleSearch = () => this.getMovie('429f9e0f', this.state.input)
