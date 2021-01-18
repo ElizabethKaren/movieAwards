@@ -6,7 +6,7 @@ import MoviePage from './Componants/MoviePage'
 import Nav from './Componants/Nav'
 import MovieList from './Componants/MovieList'
 
-const key = process.env.REACT_APP_API_KEY
+// const key = process.env.REACT_APP_API_KEY
 
 export class App extends Component{
 
