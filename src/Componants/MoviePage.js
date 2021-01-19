@@ -15,7 +15,7 @@ const MoviePage = props => {
             <h1>{movieTitle}</h1>
             {movieInfo.Poster !== 'N/A' ? <img src={movieInfo.Poster} alt={movieTitle}/> : null }
             <p>Year: {year}</p>
-            { topTitles.includes(movieInfo.Title) ? <button onClick={()=> props.removeFromFavs(movieInfo)}>Remove from Favs</button> : <button onClick={() => props.addToFavs(movieInfo)}>Add to Favs</button> }
+            { topTitles.includes(movieInfo.Title) ? <p id='favsButton' onClick={()=> props.removeFromFavs(movieInfo)}>Remove from Favs</p> : <p id='favsButton' onClick={() => props.addToFavs(movieInfo)}>Add to Favs</p> }
         </div>
     )
 }

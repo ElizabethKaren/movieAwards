@@ -47,6 +47,10 @@ a:visited {
    text-decoration: none;
 }
 
+#favsButton:hover{
+  text-decoration: underline;
+}
+
 .eachMovie{
   display: flex;
   flex-direction: column;
