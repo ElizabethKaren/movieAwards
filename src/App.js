@@ -32,8 +32,6 @@ export class App extends Component{
     this.getMovie(key, e.target.value)
   }
 
-  // handleSearch = () => this.getMovie('429f9e0f', this.state.input)
-
   movieClicked = movie => this.setState({ movieClicked: movie, input: '' })
 
   addToFavs = info => {

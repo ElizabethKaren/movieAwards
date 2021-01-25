@@ -3,15 +3,15 @@ import { Link } from 'react-router-dom'
 
 const MoviePage = props => {
     const almostTitle = props.greg.match.params.title
-    const movieTitle = almostTitle.slice(1,almostTitle.lenght)
+    const movieTitle = almostTitle.slice(1,almostTitle.length)
     const movieInfo = props.movieClicked
-    if (!movieInfo) return <div><Link to='/'><h3 id='x'>X</h3></Link><h1>{movieTitle}</h1></div>
+    if (!movieInfo) return <div><Link to='/'><h3 id='movieX'>X</h3></Link><h1>{movieTitle}</h1></div>
     const topTitlesFromStorage = JSON.parse(localStorage.getItem('myTopFive'))
     const topTitles = topTitlesFromStorage ? topTitlesFromStorage.map(movies => movies.Title) : []
     const year = parseInt(movieInfo.Year)
     return (
         <div>
-            <Link to='/'><h3 id='x'>x</h3></Link>
+            <Link to='/'><h3 id='movieX'>x</h3></Link>
             <h1>{movieTitle}</h1>
             {movieInfo.Poster !== 'N/A' ? <img src={movieInfo.Poster} alt={movieTitle}/> : null }
             <p>Year: {year}</p>
