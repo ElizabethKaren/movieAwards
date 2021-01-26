@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const MovieList = props => {
     if (props.myTopFive === null && props.list === null) return <div></div>
     if (props.myTopFive) return (
-        <div className='movieList'>
+        <div className='movieListFavs'>
             <br></br>
             <Link to='/'><div id='x'>x</div></Link>
             <br></br>

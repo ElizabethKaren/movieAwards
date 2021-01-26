@@ -32,6 +32,14 @@
   padding-right: 20px;
   justify-content: center;
 }
+.movieListFavs{
+  margin-top: 9%;
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 20px;
+  padding-right: 20px;
+  justify-content: center;
+}
 #title{
  width: 100px;
 }
