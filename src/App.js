@@ -1,74 +1,67 @@
 import './App.css';
 import { Route, Switch } from 'react-router-dom';
-import { Component } from 'react'
+import { useState, useEffect } from 'react'
 import SearchForMovie from './Componants/SearchForMovie'
 import MoviePage from './Componants/MoviePage'
-import Nav from './Componants/Nav'
+import Nav from './Componants/Nav.js'
 import MovieList from './Componants/MovieList'
 
 let key = process.env.REACT_APP_API_KEY
 
-export class App extends Component{
+const App = () => {
 
-  state = {
-    movieList: '',
-    input: '',
-    myTopFive: null,
-    movieClicked: null
-  }
+  const [movieList, addToList] = useState("")
+  const [input, updateInput] = useState("")
+  const [myTopFive, addToTopFive] = useState(null)
+  const [clickedMovie, assignMovie] = useState(null)
 
-  componentDidMount(){
-    let myTopFive = ''
+  useEffect(() => {
     if (localStorage.getItem('myTopFive')){
-      myTopFive = JSON.parse(localStorage.getItem('myTopFive'))
+      const myTopFive = JSON.parse(localStorage.getItem('myTopFive'))
+      addToTopFive(myTopFive)
     }
-    this.setState({ myTopFive })
+  }, [])
+
+  const handleOnchage = e => {
+    const value = e.target.value
+    updateInput(value)
+    fetch(`https://www.omdbapi.com/?apikey=${key}&s=${value}`).then(res => res.json()).then(movieList => addToList(movieList))
   }
 
-  getMovie = (key, movie) => fetch(`https://www.omdbapi.com/?apikey=${key}&s=${movie}`).then(res => res.json()).then(movieList => this.setState({ movieList }))
-
-  handleOnchage = e => {
-    this.setState({ [e.target.name]: e.target.value })
-    this.getMovie(key, e.target.value)
+  const movieClicked = movie => {
+    assignMovie(movie)
+    updateInput("")
   }
 
-  movieClicked = movie => this.setState({ movieClicked: movie, input: '' })
+  const unableToAdd = () => alert("Unable to add")
 
-  addToFavs = info => {
-      if (this.state.myTopFive.includes(info)){
-        alert('Already in your top five.')
-      } else if (this.state.myTopFive.length === 5){
-        alert('Only Five Movies Allowed in your top five.')
-      } else {
-        let newTopFive = ''
-          if (this.state.myTopFive !== null ){
-            newTopFive = [...this.state.myTopFive, info]
-          } else {
-            newTopFive = [info]
-          }
-          this.setState({ myTopFive: newTopFive })
-          localStorage.setItem( 'myTopFive', JSON.stringify(newTopFive) )
-      }
+  const addToFavs = info => {
+    if (myTopFive.includes(info) || myTopFive.length === 5) return unableToAdd()
+
+    if (myTopFive){
+      addAndSet([...myTopFive, info])
+    } else {
+      addAndSet([info])
+    }
   }
 
-  removeFromFavs = movie => {
-    const newArray = this.state.myTopFive.filter(film => film.Title !== movie.Title)
-    this.setState({ myTopFive: newArray })
-    localStorage.setItem( 'myTopFive', JSON.stringify(newArray) )
+  const removeFromFavs = movie => addAndSet(myTopFive.filter(film => film.Title !== movie.Title))
+
+  const addAndSet = array => {
+    addToTopFive(array)
+    localStorage.setItem('myTopFive', JSON.stringify(array))
   }
 
-  render(){
-    return (
-      <div className="App">
-        <Nav topFive={this.state.myTopFive} />
-        <Switch>
-        <Route path='/topfive' render={ () => <MovieList  movieClicked={this.movieClicked} myTopFive={this.state.myTopFive} /> }></Route>
-        <Route path='/movie/:title' render={(greg)=> <MoviePage removeFromFavs={this.removeFromFavs} myTopFive={this.state.myTopFive} addToFavs={this.addToFavs} movieClicked={this.state.movieClicked} greg={greg} getMovie={this.getMovie}/> }></Route>
-        <Route path='/' render={()=> <SearchForMovie movieClicked={this.movieClicked} list={this.state.movieList} handleOnchage={this.handleOnchage} handleSearch={this.handleSearch} input={this.state.input} /> } /> 
-        </Switch>
-      </div>
-    )
-  }
+  return (
+    <div className="App">
+      <Nav topFive={myTopFive} />
+      <Switch>
+        <Route path='/topfive' render={ () => <MovieList  movieClicked={movieClicked} myTopFive={myTopFive} /> }></Route>
+        <Route path='/movie/:title' render={(info)=> <MoviePage removeFromFavs={removeFromFavs} myTopFive={myTopFive} addToFavs={addToFavs} movieClicked={clickedMovie} info={info}/> }></Route>
+        <Route path='/' render={()=> <SearchForMovie movieClicked={movieClicked} list={movieList} handleOnchage={handleOnchage} input={input} /> } /> 
+      </Switch>
+    </div>
+  )
 }
 
 export default App;

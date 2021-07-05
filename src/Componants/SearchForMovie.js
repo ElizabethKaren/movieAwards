@@ -7,7 +7,7 @@ const SearchForMovie = props => {
             <h2>Search your favorite Movies</h2>
             <br></br>
             <form>
-                <input onChange={props.handleOnchage} name='input' placeholder='Search Movie...' value={props.input}></input>
+                <input onKeyDown={(e) => (e.key === 'Enter') && e.preventDefault()} onChange={props.handleOnchage} name='input' placeholder='Search Movie...' value={props.input}></input>
             </form>
             <br></br>
             <MovieList movieClicked={props.movieClicked} list={props.list}/>

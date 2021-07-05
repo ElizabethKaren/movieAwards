@@ -6,7 +6,7 @@ const Nav = props => {
     if (props.topFive.length === 5) return <div className='nav'><br/><Link to='/topfive'>My Top Five</Link></div>
     return (
         <div className='nav'>
-            <Link to='/topfive'>{5 - props.topFive.length} fav left..</Link>
+            <Link to='/topfive'>{props.topFive.length} out of five favs chosen..</Link>
         </div>
     )
 }
